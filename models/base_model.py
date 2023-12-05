@@ -33,3 +33,7 @@ class BaseModel:
         todict["updated_at"] = self.updated_at.isformat()
         todict["__class__"] = self.__class__.name__
         return todict
+
+    def __str__(self):
+        """prints class instance of BaseModel"""
+        return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
