@@ -1,10 +1,25 @@
 #!/usr/bin/python3
-"""Defines a class City."""
-from models.base_model import BaseModel
+"""
+    contains City class to represent a city
+    contains City class to represent a city
+"""
+
+from models.base_model import BaseModel, Base
+from models.state import State
+from os import environ
+
+storage_engine = environ.get("HBNB_TYPE_STORAGE")
 
 
-class City(BaseModel):
-    """Defines a city."""
+class City(BaseModel, Base):
+    """ City class :City class to represent a city
+    City class :City class to represent a city"""
 
-    state_id = ""
-    name = ""
+    if (storage_engine == "db"):
+        __tablename__ = "cities"
+        state_id = Column(String(60), ForeignKey(State.id))
+        name = Column(String(128), nullable=False)
+        places = relationship("Place", backref="cities")
+    else:
+        name = ""
+        state_id = ""

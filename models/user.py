@@ -1,11 +1,29 @@
 #!/usr/bin/python3
-"""from models.base_models import BaseModel."""
+"""
+    module containing user class
+    module containing user class
+"""
+from models.base_model import BaseModel, Base
+from os import environ
+
+storage_engine = environ.get("HBNB_TYPE_STORAGE")
 
 
-class user(BaseModel):
-    """Defines a user."""
-
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
+class User(BaseModel, Base):
+    """
+        User class for the user
+        User class for the user
+    """
+    if (storage_engine == 'db'):
+        __tablename__ = "users"
+        email = Column(String(128), nullable=False)
+        password = Column(String(128), nullable=False)
+        first_name = Column(String(128), nullable=True)
+        last_name = Column(String(128), nullable=True)
+        places = relationship("Place", backref="user")
+        reviews = relationship("Review", backref="user")
+    else:
+        email = ""
+        password = ""
+        first_name = ""
+        last_name = ""
