@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Defines a class Place."""
-from models.base_model import BaseMode
+from models.base_model import BaseModel
 
 
-class Place(BaseModel, Base):
+class Place(BaseModel):
     """Defines a Place"""
 
     city_id = ""
