@@ -1,1 +1,1 @@
-This is a repository for AirBnB_clone project for the ALX program
+New README file for the Airbnb_clone project
